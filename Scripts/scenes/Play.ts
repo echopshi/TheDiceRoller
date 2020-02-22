@@ -8,6 +8,7 @@
 module scenes {
   export class Play extends objects.Scene {
     // PRIVATE INSTANCE MEMBERS
+    private _background: objects.Button;
     private _diceOne: objects.Button;
     private _diceTwo: objects.Button;
     private _diceOneLabel: objects.Label;
@@ -19,6 +20,12 @@ module scenes {
     // CONSTRUCTOR
     constructor() {
       super();
+      this._background = new objects.Button(
+        config.Game.ASSETS.getResult("diceBackground"),
+        0,
+        0,
+        false
+      );
       this._diceOne = new objects.Button(
         config.Game.ASSETS.getResult("blankDice"),
         200,
@@ -33,7 +40,7 @@ module scenes {
       );
       this._diceOneLabel = new objects.Label(
         " ",
-        "24px",
+        "28px",
         "Consolas",
         "black",
         200,
@@ -42,7 +49,7 @@ module scenes {
       );
       this._diceTwoLabel = new objects.Label(
         " ",
-        "24px",
+        "28px",
         "Consolas",
         "black",
         450,
@@ -59,9 +66,12 @@ module scenes {
     }
 
     // PRIVATE METHODS
-    // role method which generates the rolling result of 2 dices
-    // assigns the correct image to corresponding location
-    // updates the label with rolling result.
+    /**
+     * role method which generates the rolling result of 2 dices
+     * assigns the correct image to corresponding location
+     * updates the label with rolling result.
+     */
+
     private _roll() {
       let outcome = [0, 0];
       for (let dice = 0; dice < 2; dice++) {
@@ -105,6 +115,7 @@ module scenes {
 
     //initialize and instatiate
     public Start(): void {
+      this.addChild(this._background);
       this.addChild(this._diceOne);
       this.addChild(this._diceTwo);
       this.addChild(this._diceOneLabel);

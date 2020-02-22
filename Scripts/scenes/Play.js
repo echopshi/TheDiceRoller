@@ -27,18 +27,21 @@ var scenes;
         // CONSTRUCTOR
         function Play() {
             var _this = _super.call(this) || this;
+            _this._background = new objects.Button(config.Game.ASSETS.getResult("diceBackground"), 0, 0, false);
             _this._diceOne = new objects.Button(config.Game.ASSETS.getResult("blankDice"), 200, 150, true);
             _this._diceTwo = new objects.Button(config.Game.ASSETS.getResult("blankDice"), 450, 150, true);
-            _this._diceOneLabel = new objects.Label(" ", "24px", "Consolas", "black", 200, 280, true);
-            _this._diceTwoLabel = new objects.Label(" ", "24px", "Consolas", "black", 450, 280, true);
+            _this._diceOneLabel = new objects.Label(" ", "28px", "Consolas", "black", 200, 280, true);
+            _this._diceTwoLabel = new objects.Label(" ", "28px", "Consolas", "black", 450, 280, true);
             _this._rollButton = new objects.Button(config.Game.ASSETS.getResult("rollButton"), 300, 400, true);
             _this.Start();
             return _this;
         }
         // PRIVATE METHODS
-        // role method which generates the rolling result of 2 dices
-        // assigns the correct image to corresponding location
-        // updates the label with rolling result.
+        /**
+         * role method which generates the rolling result of 2 dices
+         * assigns the correct image to corresponding location
+         * updates the label with rolling result.
+         */
         Play.prototype._roll = function () {
             var outcome = [0, 0];
             for (var dice = 0; dice < 2; dice++) {
@@ -68,6 +71,7 @@ var scenes;
         // PUBLIC METHODS
         //initialize and instatiate
         Play.prototype.Start = function () {
+            this.addChild(this._background);
             this.addChild(this._diceOne);
             this.addChild(this._diceTwo);
             this.addChild(this._diceOneLabel);

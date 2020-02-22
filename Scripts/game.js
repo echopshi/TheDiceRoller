@@ -25,7 +25,7 @@ var Game = (function () {
         { id: "plane", src: "./Assets/images/plane.png" },
         { id: "blankDice", src: "./Assets/images/blank.png" },
         { id: "rollButton", src: "./Assets/images/rollButton.png" },
-        { id: "resetButton", src: "./Assets/images/resetButton.png" },
+        { id: "diceBackground", src: "./Assets/images/diceBackground.png" },
         { id: "diceResult1", src: "./Assets/images/1.png" },
         { id: "diceResult2", src: "./Assets/images/2.png" },
         { id: "diceResult3", src: "./Assets/images/3.png" },
