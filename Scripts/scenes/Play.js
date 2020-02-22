@@ -20,15 +20,38 @@ var scenes;
         // CONSTRUCTOR
         function Play() {
             var _this = _super.call(this) || this;
-            _this._diceOne = new objects.Button(config.Game.ASSETS.getResult("blankDice"));
-            _this._diceTwo = new objects.Button(config.Game.ASSETS.getResult("blankDice"));
-            _this._diceOneLabel = new objects.Label(" ");
-            _this._diceTwoLabel = new objects.Label(" ");
-            _this._rollButton = new objects.Button(config.Game.ASSETS.getResult("rollButton"));
+            _this._diceOne = new objects.Button(config.Game.ASSETS.getResult("blankDice"), 200, 150, true);
+            _this._diceTwo = new objects.Button(config.Game.ASSETS.getResult("blankDice"), 450, 150, true);
+            _this._diceOneLabel = new objects.Label(" ", "24px", "Consolas", "black", 200, 280, true);
+            _this._diceTwoLabel = new objects.Label(" ", "24px", "Consolas", "black", 450, 280, true);
+            _this._rollButton = new objects.Button(config.Game.ASSETS.getResult("rollButton"), 300, 400, true);
             _this.Start();
             return _this;
         }
         // PRIVATE METHODS
+        // role method which generates the rolling result of 2 dices
+        // assigns the correct image to corresponding location
+        // updates the label with rolling result.
+        Play.prototype._roll = function () {
+            var outcome = [0, 0];
+            for (var dice = 0; dice < 2; dice++) {
+                outcome[dice] = Math.floor(util.Mathf.RandomRange(1, 6));
+            }
+            var resultOne = outcome[0];
+            if (resultOne <= 6 && resultOne >= 1) {
+                this.removeChild(this._diceOne);
+                this._diceOne = new objects.Button(config.Game.ASSETS.getResult("diceResult" + resultOne), 200, 150, true);
+                this.addChild(this._diceOne);
+                this._diceOneLabel.setText(resultOne + "");
+            }
+            var resultTwo = outcome[1];
+            if (resultTwo <= 6 && resultTwo >= 1) {
+                this.removeChild(this._diceTwo);
+                this._diceTwo = new objects.Button(config.Game.ASSETS.getResult("diceResult" + resultTwo), 450, 150, true);
+                this.addChild(this._diceTwo);
+                this._diceTwoLabel.setText(resultTwo + "");
+            }
+        };
         // PUBLIC METHODS
         //initialize and instatiate
         Play.prototype.Start = function () {
@@ -36,10 +59,17 @@ var scenes;
             this.addChild(this._diceTwo);
             this.addChild(this._diceOneLabel);
             this.addChild(this._diceTwoLabel);
+            this.addChild(this._rollButton);
             this.Main();
         };
         Play.prototype.Update = function () { };
-        Play.prototype.Main = function () { };
+        Play.prototype.Main = function () {
+            var _this = this;
+            this._rollButton.HoverOn();
+            this._rollButton.addEventListener("click", function () {
+                _this._roll();
+            });
+        };
         return Play;
     }(objects.Scene));
     scenes.Play = Play;

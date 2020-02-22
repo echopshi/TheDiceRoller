@@ -18,12 +18,13 @@ var Game = (function () {
         { id: "plane", src: "./Assets/images/plane.png" },
         { id: "blankDice", src: "./Assets/images/blank.png" },
         { id: "rollButton", src: "./Assets/images/rollButton.png" },
-        { id: "1", src: "./Assets/images/1.png" },
-        { id: "2", src: "./Assets/images/2.png" },
-        { id: "3", src: "./Assets/images/3.png" },
-        { id: "4", src: "./Assets/images/4.png" },
-        { id: "5", src: "./Assets/images/5.png" },
-        { id: "6", src: "./Assets/images/6.png" }
+        { id: "resetButton", src: "./Assets/images/resetButton.png" },
+        { id: "diceResult1", src: "./Assets/images/1.png" },
+        { id: "diceResult2", src: "./Assets/images/2.png" },
+        { id: "diceResult3", src: "./Assets/images/3.png" },
+        { id: "diceResult4", src: "./Assets/images/4.png" },
+        { id: "diceResult5", src: "./Assets/images/5.png" },
+        { id: "diceResult6", src: "./Assets/images/6.png" }
     ];
     function Preload() {
         assets = new createjs.LoadQueue(); // asset container

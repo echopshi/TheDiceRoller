@@ -13,20 +13,80 @@ module scenes {
     constructor() {
       super();
       this._diceOne = new objects.Button(
-        config.Game.ASSETS.getResult("blankDice")
+        config.Game.ASSETS.getResult("blankDice"),
+        200,
+        150,
+        true
       );
       this._diceTwo = new objects.Button(
-        config.Game.ASSETS.getResult("blankDice")
+        config.Game.ASSETS.getResult("blankDice"),
+        450,
+        150,
+        true
       );
-      this._diceOneLabel = new objects.Label(" ");
-      this._diceTwoLabel = new objects.Label(" ");
+      this._diceOneLabel = new objects.Label(
+        " ",
+        "24px",
+        "Consolas",
+        "black",
+        200,
+        280,
+        true
+      );
+      this._diceTwoLabel = new objects.Label(
+        " ",
+        "24px",
+        "Consolas",
+        "black",
+        450,
+        280,
+        true
+      );
       this._rollButton = new objects.Button(
-        config.Game.ASSETS.getResult("rollButton")
+        config.Game.ASSETS.getResult("rollButton"),
+        300,
+        400,
+        true
       );
       this.Start();
     }
 
     // PRIVATE METHODS
+    // role method which generates the rolling result of 2 dices
+    // assigns the correct image to corresponding location
+    // updates the label with rolling result.
+    private _roll() {
+      let outcome = [0, 0];
+      for (let dice = 0; dice < 2; dice++) {
+        outcome[dice] = Math.floor(util.Mathf.RandomRange(1, 6));
+      }
+
+      let resultOne = outcome[0];
+      if (resultOne <= 6 && resultOne >= 1) {
+        this.removeChild(this._diceOne);
+        this._diceOne = new objects.Button(
+          config.Game.ASSETS.getResult("diceResult" + resultOne),
+          200,
+          150,
+          true
+        );
+        this.addChild(this._diceOne);
+        this._diceOneLabel.setText(resultOne + "");
+      }
+
+      let resultTwo = outcome[1];
+      if (resultTwo <= 6 && resultTwo >= 1) {
+        this.removeChild(this._diceTwo);
+        this._diceTwo = new objects.Button(
+          config.Game.ASSETS.getResult("diceResult" + resultTwo),
+          450,
+          150,
+          true
+        );
+        this.addChild(this._diceTwo);
+        this._diceTwoLabel.setText(resultTwo + "");
+      }
+    }
 
     // PUBLIC METHODS
 
@@ -36,12 +96,18 @@ module scenes {
       this.addChild(this._diceTwo);
       this.addChild(this._diceOneLabel);
       this.addChild(this._diceTwoLabel);
+      this.addChild(this._rollButton);
 
       this.Main();
     }
 
     public Update(): void {}
 
-    public Main(): void {}
+    public Main(): void {
+      this._rollButton.HoverOn();
+      this._rollButton.addEventListener("click", () => {
+        this._roll();
+      });
+    }
   }
 }
