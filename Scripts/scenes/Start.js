@@ -45,6 +45,7 @@ var scenes;
             this.addChild(this._background);
             this.addChild(this._welcomeLabel);
             this.addChild(this._startButton);
+            this._startButton.HoverOn();
             this._startButton.on("click", function () {
                 config.Game.SCENE = scenes.State.PLAY;
             });

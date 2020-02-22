@@ -14,54 +14,14 @@ module scenes {
     private _diceOneLabel: objects.Label;
     private _diceTwoLabel: objects.Label;
     private _rollButton: objects.Button;
+    private _nextButton: objects.Button;
 
     // PUBLIC PROPERTIES
 
     // CONSTRUCTOR
     constructor() {
       super();
-      this._background = new objects.Button(
-        config.Game.ASSETS.getResult("diceBackground"),
-        0,
-        0,
-        false
-      );
-      this._diceOne = new objects.Button(
-        config.Game.ASSETS.getResult("blankDice"),
-        200,
-        150,
-        true
-      );
-      this._diceTwo = new objects.Button(
-        config.Game.ASSETS.getResult("blankDice"),
-        450,
-        150,
-        true
-      );
-      this._diceOneLabel = new objects.Label(
-        " ",
-        "28px",
-        "Consolas",
-        "black",
-        200,
-        280,
-        true
-      );
-      this._diceTwoLabel = new objects.Label(
-        " ",
-        "28px",
-        "Consolas",
-        "black",
-        450,
-        280,
-        true
-      );
-      this._rollButton = new objects.Button(
-        config.Game.ASSETS.getResult("rollButton"),
-        300,
-        400,
-        true
-      );
+
       this.Start();
     }
 
@@ -115,12 +75,54 @@ module scenes {
 
     //initialize and instatiate
     public Start(): void {
-      this.addChild(this._background);
-      this.addChild(this._diceOne);
-      this.addChild(this._diceTwo);
-      this.addChild(this._diceOneLabel);
-      this.addChild(this._diceTwoLabel);
-      this.addChild(this._rollButton);
+      this._background = new objects.Button(
+        config.Game.ASSETS.getResult("diceBackground"),
+        0,
+        0,
+        false
+      );
+      this._diceOne = new objects.Button(
+        config.Game.ASSETS.getResult("blankDice"),
+        200,
+        150,
+        true
+      );
+      this._diceTwo = new objects.Button(
+        config.Game.ASSETS.getResult("blankDice"),
+        450,
+        150,
+        true
+      );
+      this._diceOneLabel = new objects.Label(
+        " ",
+        "28px",
+        "Consolas",
+        "black",
+        200,
+        280,
+        true
+      );
+      this._diceTwoLabel = new objects.Label(
+        " ",
+        "28px",
+        "Consolas",
+        "black",
+        450,
+        280,
+        true
+      );
+      this._rollButton = new objects.Button(
+        config.Game.ASSETS.getResult("rollButton"),
+        230,
+        400,
+        true
+      );
+      this._nextButton = new objects.Button(
+        config.Game.ASSETS.getResult("nextButton"),
+        420,
+        400,
+        true
+      );
 
       this.Main();
     }
@@ -128,9 +130,22 @@ module scenes {
     public Update(): void {}
 
     public Main(): void {
+      this.addChild(this._background);
+      this.addChild(this._diceOne);
+      this.addChild(this._diceTwo);
+      this.addChild(this._diceOneLabel);
+      this.addChild(this._diceTwoLabel);
+      this.addChild(this._rollButton);
+      this.addChild(this._nextButton);
+
       this._rollButton.HoverOn();
       this._rollButton.addEventListener("click", () => {
         this._roll();
+      });
+
+      this._nextButton.HoverOn();
+      this._nextButton.addEventListener("click", () => {
+        config.Game.SCENE = scenes.State.SECONDPLAY;
       });
     }
   }

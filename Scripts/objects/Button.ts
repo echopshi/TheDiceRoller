@@ -28,6 +28,16 @@ module objects {
       this.on("mouseout", this.MouseOut);
     }
 
+    CustomizeSize(
+      width: number = this.getBounds().width,
+      height: number = this.getBounds().height,
+      isCentered: boolean = false
+    ): void {
+      this.scaleX = width / this.getBounds().width;
+      this.scaleY = height / this.getBounds().height;
+      this.isCentered = isCentered;
+    }
+
     /**
      * This function is used for initialization
      *

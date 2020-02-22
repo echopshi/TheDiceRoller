@@ -27,12 +27,6 @@ var scenes;
         // CONSTRUCTOR
         function Play() {
             var _this = _super.call(this) || this;
-            _this._background = new objects.Button(config.Game.ASSETS.getResult("diceBackground"), 0, 0, false);
-            _this._diceOne = new objects.Button(config.Game.ASSETS.getResult("blankDice"), 200, 150, true);
-            _this._diceTwo = new objects.Button(config.Game.ASSETS.getResult("blankDice"), 450, 150, true);
-            _this._diceOneLabel = new objects.Label(" ", "28px", "Consolas", "black", 200, 280, true);
-            _this._diceTwoLabel = new objects.Label(" ", "28px", "Consolas", "black", 450, 280, true);
-            _this._rollButton = new objects.Button(config.Game.ASSETS.getResult("rollButton"), 300, 400, true);
             _this.Start();
             return _this;
         }
@@ -71,20 +65,32 @@ var scenes;
         // PUBLIC METHODS
         //initialize and instatiate
         Play.prototype.Start = function () {
+            this._background = new objects.Button(config.Game.ASSETS.getResult("diceBackground"), 0, 0, false);
+            this._diceOne = new objects.Button(config.Game.ASSETS.getResult("blankDice"), 200, 150, true);
+            this._diceTwo = new objects.Button(config.Game.ASSETS.getResult("blankDice"), 450, 150, true);
+            this._diceOneLabel = new objects.Label(" ", "28px", "Consolas", "black", 200, 280, true);
+            this._diceTwoLabel = new objects.Label(" ", "28px", "Consolas", "black", 450, 280, true);
+            this._rollButton = new objects.Button(config.Game.ASSETS.getResult("rollButton"), 230, 400, true);
+            this._nextButton = new objects.Button(config.Game.ASSETS.getResult("nextButton"), 420, 400, true);
+            this.Main();
+        };
+        Play.prototype.Update = function () { };
+        Play.prototype.Main = function () {
+            var _this = this;
             this.addChild(this._background);
             this.addChild(this._diceOne);
             this.addChild(this._diceTwo);
             this.addChild(this._diceOneLabel);
             this.addChild(this._diceTwoLabel);
             this.addChild(this._rollButton);
-            this.Main();
-        };
-        Play.prototype.Update = function () { };
-        Play.prototype.Main = function () {
-            var _this = this;
+            this.addChild(this._nextButton);
             this._rollButton.HoverOn();
             this._rollButton.addEventListener("click", function () {
                 _this._roll();
+            });
+            this._nextButton.HoverOn();
+            this._nextButton.addEventListener("click", function () {
+                config.Game.SCENE = scenes.State.SECONDPLAY;
             });
         };
         return Play;

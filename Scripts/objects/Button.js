@@ -39,6 +39,14 @@ var objects;
             this.on("mouseover", this.MouseOver);
             this.on("mouseout", this.MouseOut);
         };
+        Button.prototype.CustomizeSize = function (width, height, isCentered) {
+            if (width === void 0) { width = this.getBounds().width; }
+            if (height === void 0) { height = this.getBounds().height; }
+            if (isCentered === void 0) { isCentered = false; }
+            this.scaleX = width / this.getBounds().width;
+            this.scaleY = height / this.getBounds().height;
+            this.isCentered = isCentered;
+        };
         /**
          * This function is used for initialization
          *
