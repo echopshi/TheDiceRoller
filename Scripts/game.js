@@ -1,4 +1,11 @@
 "use strict";
+/**
+ * Author: Hang Li
+ * Student Number: 300993981
+ * Creation Date: Feb 22, 2020
+ * Game App Description: The Dice Roller - Midterm
+ * Revision History: available in GitHub
+ */
 //IIFE - Immediately Invoked Function Expression
 //means -> self-executing anonymous function
 var Game = (function () {

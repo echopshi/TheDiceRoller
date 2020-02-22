@@ -1,3 +1,10 @@
+/**
+ * Author: Hang Li
+ * Student Number: 300993981
+ * Creation Date: Feb 22, 2020
+ * Game App Description: The Dice Roller - Midterm
+ * Revision History: available in GitHub
+ */
 module scenes {
   export class Play extends objects.Scene {
     // PRIVATE INSTANCE MEMBERS
@@ -61,6 +68,9 @@ module scenes {
         outcome[dice] = Math.floor(util.Mathf.RandomRange(1, 6));
       }
 
+      // get the rolling result of dice one
+      // reset the images on board
+      // update the label
       let resultOne = outcome[0];
       if (resultOne <= 6 && resultOne >= 1) {
         this.removeChild(this._diceOne);
@@ -74,6 +84,9 @@ module scenes {
         this._diceOneLabel.setText(resultOne + "");
       }
 
+      // get the rolling result of dice two
+      // reset the images on board
+      // update the label
       let resultTwo = outcome[1];
       if (resultTwo <= 6 && resultTwo >= 1) {
         this.removeChild(this._diceTwo);

@@ -12,6 +12,13 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+/**
+ * Author: Hang Li
+ * Student Number: 300993981
+ * Creation Date: Feb 22, 2020
+ * Game App Description: The Dice Roller - Midterm
+ * Revision History: available in GitHub
+ */
 var scenes;
 (function (scenes) {
     var Play = /** @class */ (function (_super) {
@@ -37,6 +44,9 @@ var scenes;
             for (var dice = 0; dice < 2; dice++) {
                 outcome[dice] = Math.floor(util.Mathf.RandomRange(1, 6));
             }
+            // get the rolling result of dice one
+            // reset the images on board
+            // update the label
             var resultOne = outcome[0];
             if (resultOne <= 6 && resultOne >= 1) {
                 this.removeChild(this._diceOne);
@@ -44,6 +54,9 @@ var scenes;
                 this.addChild(this._diceOne);
                 this._diceOneLabel.setText(resultOne + "");
             }
+            // get the rolling result of dice two
+            // reset the images on board
+            // update the label
             var resultTwo = outcome[1];
             if (resultTwo <= 6 && resultTwo >= 1) {
                 this.removeChild(this._diceTwo);
